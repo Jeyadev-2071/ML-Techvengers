@@ -1,22 +1,21 @@
-
 runtime: python39
-instance_class: F4_1G  # Instance class (can range from F1 to F4, and B1 to B8 for basic scaling)
+instance_class: F4_1G
 automatic_scaling:
   min_instances: 1
   max_instances: 4
   target_cpu_utilization: 0.65
   target_throughput_utilization: 0.75
-
+health_check:
+  enable_health_check: true
+  check_interval_sec: 30
+  timeout_sec: 300  # Wait for 5 minutes for the app to load
 resources:
-  cpu: 2  # Number of CPU cores
-  memory_gb: 4  # Amount of memory
-  disk_size_gb: 10  # Disk size
-  
+  cpu: 2
+  memory_gb: 4
+  disk_size_gb: 10
 handlers:
-  - url: /.*
-    script: auto
-
+- url: /.*
+  script: auto
 env_variables:
   PORT: 8080
-
 entrypoint: streamlit run tdf-bart.py --server.port $PORT
