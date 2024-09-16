@@ -5,10 +5,10 @@ import re
 from transformers import BartTokenizer, BartForConditionalGeneration
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.tokenize import sent_tokenize
-import torch
+import nltk
 
 # Download necessary NLTK data
-# nltk.download('punkt')
+nltk.download('punkt')
 
 # Load the BART model and tokenizer
 @st.cache_resource
