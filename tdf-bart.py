@@ -79,19 +79,23 @@ def extractive_summary_with_keywords(text, keywords, num_sentences=7):
     Returns:
         str: Extractive summary focusing on keywords.
     """
-    # Clean and tokenize sentences
+        # Clean and tokenize text into sentences
     cleaned_text = clean_text(text)
-    sentences = sent_tokenize(text)
-    
-    # Generate TF-IDF matrix for sentences
+    sentences = sent_tokenize(cleaned_text)
+
+    # Generate TF-IDF matrix for sentences (treat each sentence as a "document")
     vectorizer = TfidfVectorizer(stop_words='english')
     tfidf_matrix = vectorizer.fit_transform(sentences)
 
     # Calculate sentence scores based on TF-IDF
     sentence_scores = tfidf_matrix.sum(axis=1).flatten().tolist()
-    
+
+    # Ensure the lengths match
+    if len(sentence_scores) != len(sentences):
+        raise ValueError("Mismatch between sentence scores and sentences.")
+
     # Boost scores for sentences containing keywords
-    keyword_sentences = extract_sentences_with_keywords(text, keywords)
+    keyword_sentences = extract_sentences_with_keywords(cleaned_text, keywords)
     for i, sentence in enumerate(sentences):
         if sentence in keyword_sentences:
             sentence_scores[i] *= 1.5  # Boost score by 50% if the sentence contains a keyword
@@ -99,6 +103,7 @@ def extractive_summary_with_keywords(text, keywords, num_sentences=7):
     # Get top N sentences for the summary
     ranked_sentences = sorted(((sentence_scores[i], s) for i, s in enumerate(sentences)), reverse=True)
     summary = ' '.join([ranked_sentences[i][1] for i in range(min(num_sentences, len(ranked_sentences)))])
+
     return summary
 
 # BART Abstractive Summarization
