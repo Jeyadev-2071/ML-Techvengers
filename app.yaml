@@ -1,4 +1,4 @@
-runtime: python39
+runtime: python311
 instance_class: F4_1G
 automatic_scaling:
   min_instances: 1
