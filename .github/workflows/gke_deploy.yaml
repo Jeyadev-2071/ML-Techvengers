@@ -38,16 +38,17 @@ jobs:
       run: |
         docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/streamlit-app:latest
 
-    # Deploy to GKE
-    - name: Set up kubectl
-      uses: azure/setup-kubectl@v1
-      with:
-        version: 'latest'
+    # Install kubectl
+    - name: Install kubectl
+      run: |
+        sudo apt-get update && sudo apt-get install -y kubectl
 
+    # Get GKE credentials
     - name: Get GKE credentials
       run: |
         gcloud container clusters get-credentials streamlit-cluster --zone asia-south2-b --project ${{ secrets.GCP_PROJECT_ID }}
 
+    # Deploy to GKE
     - name: Deploy to GKE
       run: |
         kubectl apply -f gke-deployment/gke-deployment.yaml
