@@ -46,7 +46,7 @@ jobs:
 
     - name: Get GKE credentials
       run: |
-        gcloud container clusters get-credentials YOUR_CLUSTER_NAME --zone YOUR_CLUSTER_ZONE --project ${{ secrets.GCP_PROJECT_ID }}
+        gcloud container clusters get-credentials streamlit-cluster --zone asia-south2-b --project ${{ secrets.GCP_PROJECT_ID }}
 
     - name: Deploy to GKE
       run: |
