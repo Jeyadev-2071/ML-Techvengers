@@ -8,7 +8,7 @@ from nltk.tokenize import sent_tokenize
 import nltk
 
 # Download necessary NLTK data
-#nltk.download('punkt')
+nltk.download('punkt_tab',download_dir='/root/nltk_data')
 
 # Load the BART model and tokenizer
 @st.cache_resource
