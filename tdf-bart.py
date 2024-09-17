@@ -8,7 +8,7 @@ from nltk.tokenize import sent_tokenize
 import nltk
 
 # Download necessary NLTK data
-nltk.download('punkt')
+#nltk.download('punkt')
 
 # Load the BART model and tokenizer
 @st.cache_resource
@@ -79,23 +79,19 @@ def extractive_summary_with_keywords(text, keywords, num_sentences=7):
     Returns:
         str: Extractive summary focusing on keywords.
     """
-        # Clean and tokenize text into sentences
+    # Clean and tokenize sentences
     cleaned_text = clean_text(text)
-    sentences = sent_tokenize(cleaned_text)
-
-    # Generate TF-IDF matrix for sentences (treat each sentence as a "document")
+    sentences = sent_tokenize(text)
+    
+    # Generate TF-IDF matrix for sentences
     vectorizer = TfidfVectorizer(stop_words='english')
     tfidf_matrix = vectorizer.fit_transform(sentences)
 
     # Calculate sentence scores based on TF-IDF
-    sentence_scores = tfidf_matrix.sum(axis=1).flatten().tolist()
-
-    # Ensure the lengths match
-    if len(sentence_scores) != len(sentences):
-        raise ValueError("Mismatch between sentence scores and sentences.")
-
+    sentence_scores = tfidf_matrix.sum(axis=1).flatten().tolist()[0]
+    
     # Boost scores for sentences containing keywords
-    keyword_sentences = extract_sentences_with_keywords(cleaned_text, keywords)
+    keyword_sentences = extract_sentences_with_keywords(text, keywords)
     for i, sentence in enumerate(sentences):
         if sentence in keyword_sentences:
             sentence_scores[i] *= 1.5  # Boost score by 50% if the sentence contains a keyword
