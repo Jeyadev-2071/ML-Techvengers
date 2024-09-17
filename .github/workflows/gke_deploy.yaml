@@ -20,13 +20,13 @@ jobs:
       uses: google-github-actions/setup-gcloud@v1
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
-        service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        service_account_key: ${{ secrets.GCP_GKE_SERVICE_ACCOUNT_KEY }}
         export_default_credentials: true
 
     # Set up Docker
     - name: Authenticate Docker to Google Container Registry
       run: |
-        echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" | docker login -u _json_key --password-stdin https://gcr.io
+        echo "${{ secrets.GCP_GKE_SERVICE_ACCOUNT_KEY }}" | docker login -u _json_key --password-stdin https://gcr.io
 
     # Build Docker image
     - name: Build Docker image
