@@ -1,0 +1,54 @@
+name: GKE Deploy on Push to Main
+
+# Trigger the action on pushes to the main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Set up Google Cloud SDK
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        export_default_credentials: true
+
+    # Set up Docker
+    - name: Authenticate Docker to Google Container Registry
+      run: |
+        echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" | docker login -u _json_key --password-stdin https://gcr.io
+
+    # Build Docker image
+    - name: Build Docker image
+      run: |
+        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/streamlit-app:latest .
+
+    # Push Docker image to Google Container Registry
+    - name: Push Docker image
+      run: |
+        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/streamlit-app:latest
+
+    # Deploy to GKE
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v1
+      with:
+        version: 'latest'
+
+    - name: Get GKE credentials
+      run: |
+        gcloud container clusters get-credentials YOUR_CLUSTER_NAME --zone YOUR_CLUSTER_ZONE --project ${{ secrets.GCP_PROJECT_ID }}
+
+    - name: Deploy to GKE
+      run: |
+        kubectl apply -f gke-deployment/gke-deployment.yaml
+        kubectl apply -f gke-deployment/service.yaml
