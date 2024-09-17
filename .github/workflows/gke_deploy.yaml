@@ -23,10 +23,10 @@ jobs:
         service_account_key: ${{ secrets.GCP_GKE_SERVICE_ACCOUNT_KEY }}
         export_default_credentials: true
 
-    # Set up Docker
-    - name: Authenticate Docker to Google Container Registry
+    # Authenticate Docker to Google Container Registry using gcloud
+    - name: Configure Docker to use gcloud credentials
       run: |
-        echo "${{ secrets.GCP_GKE_SERVICE_ACCOUNT_KEY }}" | docker login -u _json_key --password-stdin https://gcr.io
+        gcloud auth configure-docker
 
     # Build Docker image
     - name: Build Docker image
