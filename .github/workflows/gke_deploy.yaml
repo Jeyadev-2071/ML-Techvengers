@@ -14,6 +14,11 @@ jobs:
     # Checkout the code from the repository
     - name: Checkout code
       uses: actions/checkout@v3
+  # Authenticate with Google Cloud using the service account key
+    - name: Authenticate with Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
 
     # Set up Google Cloud SDK
     - name: Set up Google Cloud SDK
@@ -21,11 +26,7 @@ jobs:
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         install_components: gcloud
-    # Authenticate with Google Cloud using the service account key
-    - name: Authenticate with Google Cloud
-      uses: google-github-actions/auth@v2
-      with:
-        credentials: ${{ secrets.GCP_SA_KEY }}
+    
 
     # Authenticate Docker to Google Container Registry using gcloud
     - name: Configure Docker to use gcloud credentials
