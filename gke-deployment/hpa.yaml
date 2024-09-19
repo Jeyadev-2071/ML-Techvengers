@@ -9,4 +9,4 @@ spec:
     name: streamlit-app-deployment
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 65
+  targetCPUUtilizationPercentage: 85

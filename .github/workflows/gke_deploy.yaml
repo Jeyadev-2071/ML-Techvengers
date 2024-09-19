@@ -13,7 +13,7 @@ jobs:
     steps:
     # Checkout the code from the repository
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     # Set up Google Cloud SDK
     - name: Set up Google Cloud SDK
@@ -21,13 +21,12 @@ jobs:
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         service_account_key: ${{ secrets.GCP_GKE_SERVICE_ACCOUNT_KEY }}
-        #credentials_json: ${{ secrets.GCP_GKE_SERVICE_ACCOUNT_KEY }}
-        
+        export_default_credentials: true
 
     # Authenticate Docker to Google Container Registry using gcloud
     - name: Configure Docker to use gcloud credentials
       run: |
-        gcloud auth configure-docker --project ${{ secrets.GCP_PROJECT_ID }}  --quiet
+        gcloud auth configure-docker gcr.io --quiet
 
     # Build Docker image
     - name: Build Docker image
@@ -41,8 +40,9 @@ jobs:
 
     # Install kubectl
     - name: Install kubectl
-      run: |
-        sudo apt-get update && sudo apt-get install -y kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
 
     # Get GKE credentials
     - name: Get GKE credentials
@@ -54,3 +54,8 @@ jobs:
       run: |
         kubectl apply -f gke-deployment/gke-deployment.yaml
         kubectl apply -f gke-deployment/service.yaml
+
+    # Check deployment status
+    - name: Check deployment status
+      run: |
+        kubectl rollout status deployment/your-deployment-name
