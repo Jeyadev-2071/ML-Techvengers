@@ -20,9 +20,13 @@ jobs:
       uses: google-github-actions/setup-gcloud@v2
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
-        service_account_key: ${{ secrets.GCP_GKE_SERVICE_ACCOUNT_KEY }}
-        export_default_credentials: true
-
+        install_components: gcloud
+    # Authenticate with Google Cloud using the service account key
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          credentials: ${{ secrets.GCP_SA_KEY }}
+          
     # Authenticate Docker to Google Container Registry using gcloud
     - name: Configure Docker to use gcloud credentials
       run: |
