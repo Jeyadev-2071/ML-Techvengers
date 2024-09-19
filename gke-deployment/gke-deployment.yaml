@@ -17,3 +17,4 @@ spec:
         image: gcr.io/vcc-deployment/streamlit-app:latest  # Update with your GCR image
         ports:
         - containerPort: 8501
+

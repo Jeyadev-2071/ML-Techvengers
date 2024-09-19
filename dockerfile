@@ -17,4 +17,4 @@ EXPOSE 8501
 # Run the Streamlit app
 
 
-CMD ["streamlit", "run", "tdf-bart.py", "--server.address=0.0.0.0", "--server.port=8501"]
+CMD ["streamlit", "run", "tdf-bart.py", "--server.port=8501"]

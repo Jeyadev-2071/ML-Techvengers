@@ -12,7 +12,7 @@ import pandas as pd
 # Load CNN/DailyMail dataset (first 100 for testing, but we'll only use 10)
 dataset = load_dataset('cnn_dailymail', '3.0.0', split='test[:100]')
 articles = dataset['article'][:10]  # Limit to first 10 articles
-reference_summaries = dataset['highlights'][:10]
+reference_summaries = dataset['highlights'][:15]
 
 # Load BART model and tokenizer
 bart_tokenizer = BartTokenizer.from_pretrained("facebook/bart-large-cnn")
@@ -104,7 +104,8 @@ for i, article in enumerate(articles):
 
 # Convert results to DataFrame
 df_results = pd.DataFrame(results)
-
+print(df_results)
+df_results.to_csv('result.csv')
 # Plot performance metrics
 df_results.groupby("model")[["rouge1", "rouge2", "rougeL"]].mean().plot(kind="bar", title="ROUGE Scores")
 df_results.groupby("model")[["exec_time", "mem_usage"]].mean().plot(kind="bar", title="Execution Time & Memory Usage")
