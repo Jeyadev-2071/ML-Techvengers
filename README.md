@@ -68,7 +68,8 @@ For details about setting up the Google kubernetes Engine, refer to the [Google 
 For details about setting up the Google Cloud VM, refer to the [VM deployment](./gcp-vm-deployment/GCP_VM_README.md)
 
 ### Contributors
-Gayathri T
-Jeyadev L 
-Devasree R
-Bratati Rout
+
+    Gayathri T - https://github.com/Gayathiriramalingam2024
+    Jeyadev L - https://github.com/Jeyadev-2071 / https://github.com/Jeyadev42
+    Devasree R - https://github.com/DevSr96
+    Bratati Rout - https://github.com/bratati-rout
