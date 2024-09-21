@@ -5,6 +5,8 @@ This repository contains the core files for the Policy Summarizer & Key Points E
 
 ## Project Overview
     - This project is designed to take legal or policy documents, summarize them using the BART model, and extract key points using TF-IDF. It can be deployed using Docker for local or cloud environments, or through GKE for scalable, cloud-based deployment.
+## Depolyment Process Flow
+    ![Process flow Diagram](./img/Process_view.png)
 
 ### tdf-bart.py
     - This Python script contains the logic for summarizing policy documents using the BART model, alongside TF-IDF-based keyword extraction. It processes the input text by splitting it into manageable chunks, performing both abstractive and extractive summarization.
@@ -44,6 +46,9 @@ This repository contains the core files for the Policy Summarizer & Key Points E
 
 ## Gke Deplpoyment
 
+### GKE Architecture
+    ![Architecture Diagram](./img/gke_arch.png)
+
 ### Login into google cloud 
     - gcloud auth configure-docker
 
@@ -63,7 +68,13 @@ This repository contains the core files for the Policy Summarizer & Key Points E
     - kubectl rollout restart deployment streamlit-app-deployment
 
 ## VM Deployement
+
+### MIG Architecture 
+    ![Architecture Diagram](./img/g_vm_arch.jpg)
+
+### GCP MIS Setup
     - For details about setting up the Google Cloud VM, refer to the [gcp-vm-deployment](./gcp-vm-deployment/GCP_VM_README.md)
+
 ### Contributors
 Gayathri T
 Jeyadev L 
