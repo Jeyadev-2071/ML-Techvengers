@@ -1,6 +1,5 @@
 # Policy Summarizer & Deployment Setup
-This repository contains the core files for the Policy Summarizer & Key Points Extractor project, which utilizes the BART model for summarization and TF-IDF for keyword extraction. It also includes deployment configurations for Docker and Google Kubernetes Engine (GKE) and in a VM instance group.This deployment model helps us find out which perform better for ML model like text summ
-    
+This repository contains the core files for the Policy Summarizer & Key Points Extractor project, which utilizes the BART model for summarization and TF-IDF for keyword extraction. It also includes deployment configurations for Docker and Google Kubernetes Engine (GKE) and in a VM instance group.This deployment model helps us find out which perform metrics between both the cloud options.   
 
 ## Contents
 
