@@ -62,7 +62,10 @@ This repository contains the core files for the Policy Summarizer & Key Points E
 ### Restarting Kubernetics Cluster
     - kubectl rollout restart deployment streamlit-app-deployment
 
+## VM Deployement
+    - For details about setting up the Google Cloud VM, refer to the [gcp-vm-deployment](./gcp-vm-deployment/GCP_VM_README.md)
 ### Contributors
+Gayathri T
 Jeyadev L 
-
-
+Devasree R
+Bratati Rout

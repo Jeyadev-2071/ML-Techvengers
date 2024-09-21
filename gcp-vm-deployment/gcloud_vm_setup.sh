@@ -88,18 +88,18 @@ gcloud compute backend-services add-backend my-backend-service
 
 # Create a URL map and target HTTP proxy:
 
-gcloud compute url-maps create my-url-map \
+gcloud compute url-maps create my-url-map 
     --default-service my-backend-service
 
-gcloud compute target-http-proxies create my-http-proxy \
+gcloud compute target-http-proxies create my-http-proxy 
     --url-map=my-url-map
 
 # Create a forwarding rule to route traffic to the load balancer:
 
-gcloud compute forwarding-rules create my-forwarding-rule \
-    --address=my-static-ip \
-    --global \
-    --target-http-proxy=my-http-proxy \
+gcloud compute forwarding-rules create my-forwarding-rule 
+    --address=my-static-ip 
+    --global 
+    --target-http-proxy=my-http-proxy 
     --ports=80
 
 
