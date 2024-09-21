@@ -6,7 +6,7 @@ This repository contains the core files for the Policy Summarizer & Key Points E
 ## Project Overview
 - This project is designed to take legal or policy documents, summarize them using the BART model, and extract key points using TF-IDF. It can be deployed using Docker for local or cloud environments, or through GKE for scalable, cloud-based deployment.
     
-## Depolyment Process Flow
+## Process Flow
 
 ![Process flow Diagram](./img/Process_view.png)
 
