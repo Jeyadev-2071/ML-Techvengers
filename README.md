@@ -52,23 +52,10 @@ This repository contains the core files for the Policy Summarizer & Key Points E
 
 ![Architecture Diagram](./img/gke_arch.png)
 
-### Login into google cloud 
-    - gcloud auth configure-docker
+### GKE Setup
+ 
+For details about setting up the Google kubernetes Engine, refer to the [Google kubernetes Engine deployment](./gke-deployment/gcp_gke_deploy.md)
 
-### Configure your GKE cluster with
-    - gcloud container clusters create [CLUSTER_NAME]
-
-### Deploy the application
-    - kubectl apply -f gke-deployment\gke-deployment.yaml
-
-### Creating image locally 
-    - docker build -t gcr.io/vcc-deployement/streamlit-app .
-
-### Pushing image to google 
-    - docker push gcr.io/vcc-deployment/streamlit-app
-
-### Restarting Kubernetics Cluster
-    - kubectl rollout restart deployment streamlit-app-deployment
 
 ## VM Deployement
 
@@ -78,7 +65,7 @@ This repository contains the core files for the Policy Summarizer & Key Points E
 
 ### GCP MIS Setup
 
-For details about setting up the Google Cloud VM, refer to the [gcp-vm-deployment](./gcp-vm-deployment/GCP_VM_README.md)
+For details about setting up the Google Cloud VM, refer to the [VM deployment](./gcp-vm-deployment/GCP_VM_README.md)
 
 ### Contributors
 Gayathri T
