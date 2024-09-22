@@ -65,7 +65,7 @@ For details about setting up the Google kubernetes Engine, refer to the [Google 
 
 ### GCP MIS Setup
 
-For details about setting up the Google Cloud VM, refer to the [VM deployment](./gcp-vm-deployment/GCP_VM_README.md)
+For details about setting up the Google Cloud VM, refer to the [VM deployment](./gcp-vm-deployment/gcp_vm_deploy.md)
 
 ### Contributors
 
