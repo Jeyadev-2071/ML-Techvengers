@@ -69,8 +69,8 @@ For details about setting up the Google Cloud VM, refer to the [VM deployment](.
 
 ### Contributors
 
-    Gayathri T (G23AI2012) - https://github.com/Gayathiriramalingam2024
-    Jeyadev L (G23AI2071) - https://github.com/Jeyadev-2071 / https://github.com/Jeyadev42
-    Bratati Rout (G23AI2074) - https://github.com/bratati-rout
-    Devasree R (G23AI2078)- https://github.com/DevSr96
+    
+    Jeyadev L M24DE3040 - https://github.com/Jeyadev-2071 / https://github.com/Jeyadev42
+    Email - m24de3040@iitj.ac.in / jeyadev1604@gmail.com
+    
     
